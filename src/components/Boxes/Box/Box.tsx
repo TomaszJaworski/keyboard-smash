@@ -15,7 +15,13 @@ const BoxWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
-    border: 1px solid red;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 3px solid red;
     background-color: antiquewhite;
+
+    position: fixed;
+    left: 300px;
+    top: 150px;
 `;

@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     body {
+        margin: 0;
+        overflow: hidden;
         font-family: ${({ theme }) => theme.fontBase};
         font-size: ${({ theme }) => theme.fontSize.base};
     }

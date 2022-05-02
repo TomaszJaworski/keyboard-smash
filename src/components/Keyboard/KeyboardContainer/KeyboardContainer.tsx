@@ -23,6 +23,7 @@ export const KeyboardContainer = function () {
         setClicked((prev) => prev.filter((k) => k !== value));
     };
 
+    // EVENTS METHOD BELOW
     const handleKeyDown = function (e: KeyboardEvent) {
         addClickedElement(e?.key);
     };
@@ -55,6 +56,8 @@ export const KeyboardContainer = function () {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('keyup', handleKeyUp);
         };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

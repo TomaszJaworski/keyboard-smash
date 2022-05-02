@@ -10,5 +10,6 @@ export const themeStyle: DefaultTheme = {
         white: '#ffffff',
         black: '#000000',
         gray: '#f0f0f0',
+        gray2: '#f7f5f5',
     },
 };
