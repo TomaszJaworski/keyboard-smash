@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { KeyboardLayout } from '../KeyboardLayout';
+import { useKeys } from '../../../contexts/KeysContext';
 
 export const KeyboardContainer = function () {
     const [clicked, setClicked] = useState<string[]>([]);
+    const { setKeys } = useKeys();
 
     /**
      * Wrapper for 'clicked' useState. Add to array only unique elements
      */
     const addClickedElement = function (value: string) {
-        setClicked((prev): string[] => {
+        setClicked((prev) => {
             if (prev.indexOf(value) !== -1) return prev;
 
             return [...prev, value];
@@ -23,7 +25,6 @@ export const KeyboardContainer = function () {
         setClicked((prev) => prev.filter((k) => k !== value));
     };
 
-    // EVENTS METHOD BELOW
     const handleKeyDown = function (e: KeyboardEvent) {
         addClickedElement(e?.key);
     };
@@ -56,9 +57,11 @@ export const KeyboardContainer = function () {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('keyup', handleKeyUp);
         };
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (clicked.length > 0) setKeys((prev) => [...prev, ...clicked]);
+    }, [clicked]);
 
     return (
         <KeyboardContainerWrapper>
