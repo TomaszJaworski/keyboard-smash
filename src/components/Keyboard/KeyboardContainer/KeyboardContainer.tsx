@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { KeyboardLayout } from '../KeyboardLayout';
 import { useKeys } from '../../../contexts/KeysContext';
+import { filterKeys } from '../helpers/filterKeys';
 
 export const KeyboardContainer = function () {
     const [clicked, setClicked] = useState<string[]>([]);
@@ -26,6 +27,13 @@ export const KeyboardContainer = function () {
     };
 
     const handleKeyDown = function (e: KeyboardEvent) {
+        const key = e?.key;
+
+        if (!filterKeys(key)) {
+            // return if keycode is out of scope
+            return;
+        }
+
         addClickedElement(e?.key);
     };
 
