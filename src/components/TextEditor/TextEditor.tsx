@@ -1,14 +1,13 @@
 import styled, { keyframes } from 'styled-components';
+import { useKeys } from '../../contexts/KeysContext';
 
-interface TextEditorProps {
-    content?: string;
-}
+export const TextEditor = function () {
+    const { keys } = useKeys();
 
-export const TextEditor = function ({ content = '' }: TextEditorProps) {
     return (
         <TextEditorWrapper>
             <TextEditorContent>
-                {content}
+                {keys}
                 <TextEditorCursor />
             </TextEditorContent>
         </TextEditorWrapper>
@@ -27,6 +26,8 @@ const TextEditorContent = styled.div`
     padding: 50px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
+    word-break: break-all;
     background: ${({ theme }) => theme.colors.white};
     box-shadow: 0 0 50px ${({ theme }) => theme.colors.black}10;
 `;
@@ -41,6 +42,7 @@ const TextEditorCursor = styled.span`
     width: 1px;
     height: 18px;
     display: inline-block;
+    vertical-align: middle;
     background: ${({ theme }) => theme.colors.black};
     animation: ${cursorBlinking} 1.5s steps(2) infinite;
 `;

@@ -68,7 +68,11 @@ export const KeyboardContainer = function () {
     }, []);
 
     useEffect(() => {
-        if (clicked.length > 0) setKeys((prev) => [...prev, ...clicked]);
+        if (clicked.length === 1) {
+            // update global keys only with one item at a time.
+            // Where user clicked more than 1 key at a time there may be a bugs
+            setKeys((prev) => [...prev, ...clicked]);
+        }
     }, [clicked]);
 
     return (
