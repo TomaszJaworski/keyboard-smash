@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { KeyboardLayout } from '../KeyboardLayout';
 import { useKeys } from '../../../contexts/KeysContext';
-import { filterKeys } from '../helpers/filterKeys';
+import { getKeyboardFlatLayout } from '../helpers/keyboardLayout';
 
 export const KeyboardContainer = function () {
     const [clicked, setClicked] = useState<string[]>([]);
@@ -20,25 +20,37 @@ export const KeyboardContainer = function () {
     };
 
     /**
-     * Wrapper for 'clicked' useState. Remove for array specifed element
+     * Wrapper for 'clicked' useState. Remove for array specified element
      */
     const removeClickedElement = function (value: string) {
         setClicked((prev) => prev.filter((k) => k !== value));
     };
 
     const handleKeyDown = function (e: KeyboardEvent) {
-        const key = e?.key;
+        let key = e?.key;
 
-        if (!filterKeys(key)) {
+        if (key === ' ') {
+            // using event.key "Space" is returned as " "
+            key = 'Space';
+        }
+
+        if (!getKeyboardFlatLayout().includes(key)) {
             // return if keycode is out of scope
             return;
         }
 
-        addClickedElement(e?.key);
+        addClickedElement(key);
     };
 
     const handleKeyUp = function (e: KeyboardEvent) {
-        removeClickedElement(e?.key);
+        let key = e?.key;
+
+        if (key === ' ') {
+            // using event.key "Space" is returned as " "
+            key = 'Space';
+        }
+
+        removeClickedElement(key);
     };
 
     const handleMouseDown = function (e: React.MouseEvent<HTMLButtonElement>) {
