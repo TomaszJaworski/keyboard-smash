@@ -4,14 +4,14 @@ import { getWeightedRandomItem } from '../../../helpers/getWeightedRandomItem';
 export type BoxRootElement = HTMLDivElement;
 
 interface Options {
-    onComplete: ($el: BoxRootElement) => void;
+    onComplete: () => void;
 }
 
 /**
  * Get random animation and use it to passed $el
  */
 export const getBoxAnimations = function ($el: BoxRootElement, options: Options) {
-    const timeline = gsap.timeline({ onComplete: () => options.onComplete($el) });
+    const timeline = gsap.timeline({ onComplete: () => options.onComplete() });
     const animations = [animationShowRotateHide, animationRotatingBouncingBall];
     const selectedAnimation = getWeightedRandomItem(animations, [10, 1]);
 

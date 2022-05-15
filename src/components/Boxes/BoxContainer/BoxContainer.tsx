@@ -20,16 +20,16 @@ export const BoxContainer = function () {
         setBoxes((prev) => prev.concat(newKeys));
     }, [keys]);
 
-    const onBoxAnimationEnd = useCallback(($node: HTMLDivElement) => {
+    const onBoxAnimationEnd = useCallback(($node: HTMLDivElement, index: number) => {
         if (!$node) return;
 
-        // console.log($node);
+        // console.log($node, index);
     }, []);
 
     return (
         <div>
             {boxes.map(({ index, value }) => (
-                <Box key={index} value={value} onComplete={onBoxAnimationEnd} />
+                <Box key={index} index={index} value={value} onComplete={onBoxAnimationEnd} />
             ))}
         </div>
     );

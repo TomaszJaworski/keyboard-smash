@@ -5,7 +5,8 @@ import { getBoxAnimations } from '../helpers/getBoxAnimations';
 
 interface BoxProps {
     value: string;
-    onComplete: ($div: HTMLDivElement) => void;
+    onComplete: ($el: HTMLDivElement, index: number) => void;
+    index: number;
 }
 
 interface BoxWrapperProps {
@@ -14,7 +15,7 @@ interface BoxWrapperProps {
     top: string;
 }
 
-export const Box = memo(({ value, onComplete }: BoxProps) => {
+export const Box = memo(({ value, onComplete, index }: BoxProps) => {
     const $boxRef = useRef<HTMLDivElement | null>(null);
 
     const calculateInlineStyles = function (): { left: number; top: number; fontSize: number } {
@@ -34,8 +35,10 @@ export const Box = memo(({ value, onComplete }: BoxProps) => {
             return;
         }
 
-        getBoxAnimations($boxRef.current, {
-            onComplete,
+        const $el = $boxRef.current;
+
+        getBoxAnimations($el, {
+            onComplete: () => onComplete($el, index),
         });
     }, []);
 
