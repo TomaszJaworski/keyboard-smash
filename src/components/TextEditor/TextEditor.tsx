@@ -3,12 +3,28 @@ import { useKeys } from '../../contexts/KeysContext';
 
 export const TextEditor = function () {
     const { keys } = useKeys();
+    const generateOutput = function (values: string[]): string {
+        return values
+            .map((value) => {
+                let val = value;
+
+                if (value === 'Space') {
+                    val = ' ';
+                } else if (value === 'Enter') {
+                    val = '<br />';
+                } else if (value === 'Shift') {
+                    val = '';
+                }
+
+                return val;
+            })
+            .join('');
+    };
 
     return (
         <TextEditorWrapper>
             <TextEditorContent>
-                {keys}
-                <TextEditorCursor />
+                <TextEditorOutput dangerouslySetInnerHTML={{ __html: generateOutput(keys) }} />
             </TextEditorContent>
         </TextEditorWrapper>
     );
@@ -38,11 +54,17 @@ const cursorBlinking = keyframes`
     }
 `;
 
-const TextEditorCursor = styled.span`
-    width: 1px;
-    height: 18px;
-    display: inline-block;
-    vertical-align: middle;
-    background: ${({ theme }) => theme.colors.black};
-    animation: ${cursorBlinking} 1.5s steps(2) infinite;
+const TextEditorOutput = styled.p`
+    margin: 0;
+
+    &::after {
+        content: '';
+        width: 1px;
+        height: 18px;
+        margin-left: 2px;
+        display: inline-block;
+        vertical-align: middle;
+        background: ${({ theme }) => theme.colors.black};
+        animation: ${cursorBlinking} 1.5s steps(2) infinite;
+    }
 `;
