@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import gsap from 'gsap';
 import { getRandomValue } from '../../../helpers/getRandomValue';
+import { getBoxAnimations } from '../helpers/getBoxAnimations';
 
 interface BoxProps {
     value: string;
@@ -16,6 +16,7 @@ interface BoxWrapperProps {
 
 export const Box = memo(({ value, onComplete }: BoxProps) => {
     const $boxRef = useRef<HTMLDivElement | null>(null);
+
     const calculateInlineStyles = function (): { left: number; top: number; fontSize: number } {
         const wWidth = window.innerWidth;
         const wHeight = window.innerHeight;
@@ -24,7 +25,7 @@ export const Box = memo(({ value, onComplete }: BoxProps) => {
         return {
             left: getRandomValue(0, wWidth - boxWidth),
             top: getRandomValue(0, wHeight - boxWidth),
-            fontSize: getRandomValue(10, 16),
+            fontSize: getRandomValue(10, 20),
         };
     };
 
@@ -33,13 +34,9 @@ export const Box = memo(({ value, onComplete }: BoxProps) => {
             return;
         }
 
-        const $box = $boxRef.current;
-        const timeline = gsap.timeline({ onComplete: () => onComplete($box) });
-
-        timeline
-            .from($box, { opacity: 0, y: 100, scale: 0, duration: 0.5 })
-            .from($box, { delay: 0.2, rotationY: 720, duration: 0.5 })
-            .to($box, { scale: 2.5, opacity: 0, duration: 0.1 });
+        getBoxAnimations($boxRef.current, {
+            onComplete,
+        });
     }, []);
 
     return (
