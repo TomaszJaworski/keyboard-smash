@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/keyboard-smasher/static/js/main.d762c3a1.js",
+    "static/js/787.3ea8619f.chunk.js": "/keyboard-smasher/static/js/787.3ea8619f.chunk.js",
+    "index.html": "/keyboard-smasher/index.html",
+    "main.d762c3a1.js.map": "/keyboard-smasher/static/js/main.d762c3a1.js.map",
+    "787.3ea8619f.chunk.js.map": "/keyboard-smasher/static/js/787.3ea8619f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d762c3a1.js"
+  ]
+}
