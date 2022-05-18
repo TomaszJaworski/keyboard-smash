@@ -46,7 +46,7 @@ const KeyButton = styled.button<KeyButtonProps>`
     ${(props) =>
         props.isSelected
             ? css`
-                  background-color: #96bfff;
+                  background-color: ${({ theme }) => theme.colors.blue};
                   box-shadow: 0 4px ${({ theme }) => theme.colors.black}80;
                   color: ${({ theme }) => theme.colors.white};
               `

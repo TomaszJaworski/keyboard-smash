@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { KeysContextProvider } from '../../contexts/KeysContext';
+import { SetupContextProvider } from '../../contexts/SetupContext';
 
 interface AppContainerProps {
     children: ReactNode;
@@ -9,7 +10,9 @@ interface AppContainerProps {
 export const AppContainer = function ({ children }: AppContainerProps) {
     return (
         <AppWrapper>
-            <KeysContextProvider>{children}</KeysContextProvider>
+            <SetupContextProvider>
+                <KeysContextProvider>{children}</KeysContextProvider>
+            </SetupContextProvider>
         </AppWrapper>
     );
 };

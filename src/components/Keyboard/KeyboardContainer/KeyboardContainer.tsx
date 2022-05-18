@@ -20,7 +20,7 @@ export const KeyboardContainer = function () {
     };
 
     /**
-     * Wrapper for 'clicked' useState. Remove for array specified element
+     * Wrapper for 'clicked' useState. Remove from array specified element
      */
     const removeClickedElement = function (value: string) {
         setClicked((prev) => prev.filter((k) => k !== value));

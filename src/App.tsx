@@ -5,6 +5,7 @@ import { KeyboardContainer } from './components/Keyboard';
 import { BoxContainer } from './components/Boxes/BoxContainer';
 import { TextEditor } from './components/TextEditor/TextEditor';
 import { AppContainer } from './components/AppContainer/AppContainer';
+import { ConfigurationTrigger } from './components/Configuration/ConfigurationTrigger';
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
             <AppContainer>
                 <GlobalStyle />
 
+                <ConfigurationTrigger />
                 <TextEditor />
                 <BoxContainer />
                 <KeyboardContainer />

@@ -1,9 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState } from 'react';
 
-interface KeysContextProviderProps {
-    children: ReactNode;
-}
-
 interface KeysContextData {
     keys: string[];
     setKeys: Dispatch<SetStateAction<string[]>>;
@@ -13,7 +9,7 @@ interface KeysContextData {
 export const KeysContext = createContext<KeysContextData | undefined>(undefined);
 
 // PROVIDER
-export const KeysContextProvider = function ({ children }: KeysContextProviderProps) {
+export const KeysContextProvider = function ({ children }: { children: ReactNode }) {
     const [keys, setKeys] = useState<string[]>([]);
     const value = useMemo(
         () => ({
