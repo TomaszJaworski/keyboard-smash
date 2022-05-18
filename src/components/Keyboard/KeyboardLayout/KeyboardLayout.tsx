@@ -20,6 +20,7 @@ export const KeyboardLayout = function ({ clicked, keyMouseDown, keyMouseUp }: K
         const layoutComponents: LayoutComponents = {
             Space: KeySpace,
             Shift: KeyShift,
+            Enter: KeyEnter,
         };
 
         if (isSpecialSymbol) {
@@ -91,5 +92,13 @@ const KeyShift = styled(Key)`
 
     span {
         font-size: 60%;
+    }
+`;
+
+const KeyEnter = styled(Key)`
+    width: ${({ theme }) => em('100px', theme.fontSize.keyboard)}em;
+
+    span {
+        font-size: 80%;
     }
 `;
