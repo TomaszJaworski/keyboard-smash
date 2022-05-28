@@ -3,6 +3,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { useSetup } from '../../../contexts/SetupContext';
 import { Checkbox } from '../../Forms/Checkbox';
+import { Range } from '../../Forms/Range/Range';
 
 interface ConfigurationModalProps {
     isVisible: boolean;
@@ -32,6 +33,18 @@ export const ConfigurationModal = function ({ isVisible, toggleVisible }: Config
                                 label="Show keyboard on load"
                                 name="isKeyboardVisible"
                                 checked={setup.isKeyboardVisible}
+                                onChange={handleChangeInput}
+                            />
+                        </ListElement>
+
+                        <ListElement>
+                            <Range
+                                name="keyboardSize"
+                                value={setup.keyboardSize}
+                                min={12}
+                                max={22}
+                                step={2}
+                                label="Keyboard size"
                                 onChange={handleChangeInput}
                             />
                         </ListElement>

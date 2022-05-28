@@ -4,6 +4,7 @@ import { Key } from '../Key';
 import { getKeyboardLayout } from '../helpers/keyboardLayout';
 import { em } from '../../../helpers/stylesHelpers';
 import { isSpecialKey } from '../helpers/isSpecialKey';
+import { useSetup } from '../../../contexts/SetupContext';
 
 interface KeyboardLayoutProps {
     clicked: string[];
@@ -15,7 +16,13 @@ interface LayoutComponents {
     [x: string]: any;
 }
 
+interface KeyboardWrapperProps {
+    size: number;
+}
+
 export const KeyboardLayout = function ({ clicked, keyMouseDown, keyMouseUp }: KeyboardLayoutProps) {
+    const { setup } = useSetup();
+
     const detectKeyLayout = function (value: string, isSpecialSymbol: boolean) {
         const layoutComponents: LayoutComponents = {
             Space: KeySpace,
@@ -58,14 +65,14 @@ export const KeyboardLayout = function ({ clicked, keyMouseDown, keyMouseUp }: K
         });
     };
 
-    return <KeyboardWrapper>{renderKeyboardLayout()}</KeyboardWrapper>;
+    return <KeyboardWrapper size={setup.keyboardSize}>{renderKeyboardLayout()}</KeyboardWrapper>;
 };
 
-const KeyboardWrapper = styled.div`
+const KeyboardWrapper = styled.div<KeyboardWrapperProps>`
     padding: ${({ theme }) => em('20px', theme.fontSize.keyboard)}em
         ${({ theme }) => em('15px', theme.fontSize.keyboard)}em;
     border-radius: 20px;
-    font-size: ${({ theme }) => theme.fontSize.keyboard};
+    font-size: ${(props) => props.size}px;
     background-color: ${({ theme }) => theme.colors.gray};
 `;
 
@@ -80,7 +87,7 @@ const KeyboardRow = styled.div`
 `;
 
 const KeyItem = styled(Key)`
-    margin: 0 5px;
+    margin: 0 0.3125em;
 `;
 
 const KeySpace = styled(Key)`

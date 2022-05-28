@@ -2,6 +2,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo
 
 interface SetupOptionsData {
     theme: string;
+    keyboardSize: number;
     isKeyboardVisible: boolean;
 }
 
@@ -12,6 +13,7 @@ interface SetupOptionsContext {
 
 const setupOptions = {
     theme: 'light',
+    keyboardSize: 18,
     isKeyboardVisible: true,
 };
 
