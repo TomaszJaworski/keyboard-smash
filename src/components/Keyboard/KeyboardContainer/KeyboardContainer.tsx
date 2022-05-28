@@ -30,12 +30,14 @@ export const KeyboardContainer = function () {
         let key = e?.key;
 
         if (key === ' ') {
-            // using event.key "Space" is returned as " "
+            // using event.key "Space" is returned as an empty string " "
             key = 'Space';
         }
 
         if (!getKeyboardFlatLayout().includes(key)) {
             // return if keycode is out of scope
+            // also helps for prevent run built in browser functions
+            e.preventDefault();
             return;
         }
 

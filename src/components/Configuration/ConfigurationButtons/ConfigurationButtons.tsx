@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ConfigurationModal } from '../ConfigurationModal';
 import { ActionButton } from '../../ActionButton';
@@ -16,6 +16,20 @@ export const ConfigurationButtons = function () {
             document.documentElement.requestFullscreen().then(() => setFullscreen(true));
         }
     };
+
+    useEffect(() => {
+        const handleFullscreen = () => {
+            if (document.fullscreenElement === null) {
+                setFullscreen(false);
+            }
+        };
+
+        document.documentElement.addEventListener('fullscreenchange', handleFullscreen);
+
+        return () => {
+            document.documentElement.removeEventListener('fullscreenchange', handleFullscreen);
+        };
+    }, []);
 
     return (
         <ConfigurationButtonsWrapper>
