@@ -15,5 +15,8 @@ declare module 'styled-components' {
             gray2: string;
             gray3: string;
         };
+        transition: {
+            baseTime: string;
+        };
     }
 }

@@ -14,4 +14,7 @@ export const themeStyle: DefaultTheme = {
         gray2: '#f7f5f5',
         gray3: '#c6c6c6',
     },
+    transition: {
+        baseTime: '0.2s',
+    },
 };
