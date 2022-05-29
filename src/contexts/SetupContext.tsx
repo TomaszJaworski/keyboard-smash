@@ -1,4 +1,13 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState } from 'react';
+import {
+    createContext,
+    Dispatch,
+    ReactNode,
+    SetStateAction,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 
 interface SetupOptionsData {
     theme: string;
@@ -11,11 +20,14 @@ interface SetupOptionsContext {
     setSetup: Dispatch<SetStateAction<SetupOptionsData>>;
 }
 
-const setupOptions = {
-    theme: 'light',
-    keyboardSize: 18,
-    isKeyboardVisible: true,
-};
+const savedSetupOptions = localStorage.getItem('appSetup');
+const setupOptions = savedSetupOptions
+    ? JSON.parse(savedSetupOptions)
+    : {
+          theme: 'light',
+          keyboardSize: 18,
+          isKeyboardVisible: true,
+      };
 
 // CONTEXT
 export const SetupContext = createContext<SetupOptionsContext | undefined>(undefined);
@@ -30,6 +42,11 @@ export const SetupContextProvider = function ({ children }: { children: ReactNod
         }),
         [setup]
     );
+
+    useEffect(() => {
+        localStorage.setItem('appSetup', JSON.stringify(setup));
+    }, [setup]);
+
     return <SetupContext.Provider value={value}>{children}</SetupContext.Provider>;
 };
 

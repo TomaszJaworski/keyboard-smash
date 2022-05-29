@@ -18,6 +18,7 @@ export const ConfigurationButtons = function () {
     };
 
     useEffect(() => {
+        // in case when someone pressed esc key
         const handleFullscreen = () => {
             if (document.fullscreenElement === null) {
                 setFullscreen(false);
