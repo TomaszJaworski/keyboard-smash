@@ -16,7 +16,8 @@ interface LayoutComponents {
     [x: string]: any;
 }
 
-interface KeyboardWrapperProps {
+interface KeyboardInnerProps {
+    isKeyboardVisible: boolean;
     size: number;
 }
 
@@ -65,14 +66,48 @@ export const KeyboardLayout = function ({ clicked, keyMouseDown, keyMouseUp }: K
         });
     };
 
-    return <KeyboardWrapper size={setup.keyboardSize}>{renderKeyboardLayout()}</KeyboardWrapper>;
+    return (
+        <KeyboardContainer
+            isKeyboardVisible={setup.isKeyboardVisible}
+            size={setup.keyboardSize}
+            className="keyboard-container"
+        >
+            <KeyboardInner>{renderKeyboardLayout()}</KeyboardInner>
+        </KeyboardContainer>
+    );
 };
 
-const KeyboardWrapper = styled.div<KeyboardWrapperProps>`
+const KeyboardContainer = styled.div<KeyboardInnerProps>`
+    font-size: ${(props) => props.size}px;
+    position: fixed;
+    left: 50%;
+    bottom: ${(props) => (props.isKeyboardVisible ? '40px' : '-200px')};
+    transform: translateX(-50%);
+    transition: bottom ${({ theme }) => theme.transition.baseTime};
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        opacity: ${(props) => (props.isKeyboardVisible ? 0 : 1)};
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 1) 100%
+        );
+        z-index: 10;
+        transition: opacity ${({ theme }) => theme.transition.baseTime};
+    }
+`;
+
+const KeyboardInner = styled.div`
     padding: ${({ theme }) => em('20px', theme.fontSize.keyboard)}em
         ${({ theme }) => em('15px', theme.fontSize.keyboard)}em;
     border-radius: 20px;
-    font-size: ${(props) => props.size}px;
     background-color: ${({ theme }) => theme.colors.gray};
 `;
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { KeyboardLayout } from '../KeyboardLayout';
 import { useKeys } from '../../../contexts/KeysContext';
 import { getKeyboardFlatLayout } from '../helpers/keyboardLayout';
@@ -89,16 +88,5 @@ export const KeyboardContainer = function () {
         }
     }, [clicked]);
 
-    return (
-        <KeyboardContainerWrapper>
-            <KeyboardLayout clicked={clicked} keyMouseDown={handleMouseDown} keyMouseUp={handleMouseup} />
-        </KeyboardContainerWrapper>
-    );
+    return <KeyboardLayout clicked={clicked} keyMouseDown={handleMouseDown} keyMouseUp={handleMouseup} />;
 };
-
-const KeyboardContainerWrapper = styled.div`
-    position: fixed;
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%);
-`;
