@@ -1,12 +1,16 @@
 {
   "files": {
-    "main.js": "/keyboard-smasher/static/js/main.ab4f2ae3.js",
+    "main.js": "/keyboard-smasher/static/js/main.381598df.js",
     "static/js/787.3ea8619f.chunk.js": "/keyboard-smasher/static/js/787.3ea8619f.chunk.js",
+    "static/media/cog.svg": "/keyboard-smasher/static/media/cog.0ed67705d587fc22264c9eea4c182c33.svg",
     "index.html": "/keyboard-smasher/index.html",
-    "main.ab4f2ae3.js.map": "/keyboard-smasher/static/js/main.ab4f2ae3.js.map",
+    "static/media/fullscreen.svg": "/keyboard-smasher/static/media/fullscreen.a7f5388cb703170a5ed34871b826d9c6.svg",
+    "static/media/x.svg": "/keyboard-smasher/static/media/x.8780e955b81cbbcd8fc2204c3e787cfd.svg",
+    "static/media/check.svg": "/keyboard-smasher/static/media/check.8f6cd16c6f55534912f4636450d7d1b9.svg",
+    "main.381598df.js.map": "/keyboard-smasher/static/js/main.381598df.js.map",
     "787.3ea8619f.chunk.js.map": "/keyboard-smasher/static/js/787.3ea8619f.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ab4f2ae3.js"
+    "static/js/main.381598df.js"
   ]
 }
