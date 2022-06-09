@@ -26,7 +26,7 @@ export const KeyboardContainer = function () {
     };
 
     const handleKeyDown = function (e: KeyboardEvent) {
-        let key = e?.key;
+        let key = e?.key.toLowerCase();
 
         if (key === ' ') {
             // using event.key "Space" is returned as an empty string " "
@@ -44,7 +44,7 @@ export const KeyboardContainer = function () {
     };
 
     const handleKeyUp = function (e: KeyboardEvent) {
-        let key = e?.key;
+        let key = e?.key.toLowerCase();
 
         if (key === ' ') {
             // using event.key "Space" is returned as " "

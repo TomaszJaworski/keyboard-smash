@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { Box } from '../Box';
 import { useKeys } from '../../../contexts/KeysContext';
 
@@ -22,15 +23,15 @@ export const BoxContainer = function () {
 
     const onBoxAnimationEnd = useCallback(($node: HTMLDivElement, index: number) => {
         if (!$node) return;
-
-        // console.log($node, index);
     }, []);
 
     return (
-        <div>
+        <BoxContainerWrapper>
             {boxes.map(({ index, value }) => (
                 <Box key={index} index={index} value={value} onComplete={onBoxAnimationEnd} />
             ))}
-        </div>
+        </BoxContainerWrapper>
     );
 };
+
+const BoxContainerWrapper = styled.div``;

@@ -44,7 +44,9 @@ export const Box = memo(({ value, onComplete, index }: BoxProps) => {
 
     return (
         <BoxWrapper ref={$boxRef} {...calculateInlineStyles()}>
-            <BoxWrapperInput>{value}</BoxWrapperInput>
+            <BoxWrapperInner>
+                <BoxWrapperInput>{value}</BoxWrapperInput>
+            </BoxWrapperInner>
         </BoxWrapper>
     );
 });
@@ -62,16 +64,26 @@ const BoxWrapper = styled.div.attrs<BoxWrapperProps>((props) => {
 })`
     width: 5em;
     height: 5em;
+    padding: 0.3em;
+    font-weight: bold;
+    border-radius: 10px;
+    background: rgb(246, 78, 120);
+    background: linear-gradient(45deg, rgba(246, 78, 120, 1) 0%, rgba(146, 28, 243, 1) 100%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: absolute;
+`;
+
+const BoxWrapperInner = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 3px solid red;
-    background-color: antiquewhite;
-    position: fixed;
+    border-radius: 5px;
+    background: #ffffff20;
 `;
 
 const BoxWrapperInput = styled.span`
     font-size: 2em;
+    color: #ffffff;
 `;

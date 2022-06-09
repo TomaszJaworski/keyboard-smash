@@ -89,7 +89,7 @@ const KeyboardContainer = styled.div<KeyboardInnerProps>`
         content: '';
         width: 100%;
         height: 100%;
-        opacity: ${(props) => (props.isKeyboardVisible ? 0 : 1)};
+        display: ${(props) => (props.isKeyboardVisible ? 'none' : 'block')};
         position: absolute;
         left: 0;
         top: 0;
@@ -100,7 +100,6 @@ const KeyboardContainer = styled.div<KeyboardInnerProps>`
             rgba(255, 255, 255, 1) 100%
         );
         z-index: 10;
-        transition: opacity ${({ theme }) => theme.transition.baseTime};
     }
 `;
 
